@@ -194,22 +194,21 @@ class _SpinningWheelState extends State<SpinningWheel>
       width: widget.width,
       child: Stack(
         children: [
-          GestureDetector(
-            onPanUpdate: _moveWheel,
-            onPanEnd: _startAnimationOnPanEnd,
-            onPanDown: (_details) => _stopAnimation(),
-            child: AnimatedBuilder(
-                animation: _animation,
-                child: Container(child: widget.image),
-                builder: (context, child) {
-                  _updateAnimationValues();
-                  widget.onUpdate!(_currentDivider);
-                  return Transform.rotate(
-                    angle: _initialSpinAngle + _currentDistance,
-                    child: child,
-                  );
-                }),
-          ),
+          // onPanUpdate: _moveWheel,
+          // onPanEnd: _startAnimationOnPanEnd,
+          // onPanDown: (_details) => _stopAnimation(),
+          AnimatedBuilder(
+              animation: _animation,
+              child: Container(child: widget.image),
+              builder: (context, child) {
+                _updateAnimationValues();
+                widget.onUpdate!(_currentDivider);
+                return Transform.rotate(
+                  angle: _initialSpinAngle + _currentDistance,
+                  child: child,
+                );
+              }),
+
           widget.secondaryImage != null
               ? Positioned(
                   top: topSecondaryImage,
